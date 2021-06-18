@@ -7,10 +7,10 @@ disable_aslr:
 	sudo bash -c 'echo 0 > /proc/sys/kernel/randomize_va_space'
 
 .PHONY: all
-all: ./bof/bof ./ret2win/ret2win ./bypass_canary/bypass_canary ./rop_chain/rop_chain ./libc_leak/libc_leak
+all: ./shellcode/shellcode ./ret2win/ret2win ./bypass_canary/bypass_canary ./rop_chain/rop_chain ./libc_leak/libc_leak
 
-./bof/bof: ./bof/bof.c
-	gcc -no-pie -fno-stack-protector -z execstack ./bof/bof.c -o ./bof/bof
+./shellcode/shellcode: ./shellcode/shellcode.c
+	gcc -no-pie -fno-stack-protector -z execstack ./shellcode/shellcode.c -o ./shellcode/shellcode
 
 ./ret2win/ret2win: ./ret2win/ret2win.c
 	gcc -no-pie -fno-stack-protector -z execstack ./ret2win/ret2win.c -o ./ret2win/ret2win
@@ -28,4 +28,4 @@ all: ./bof/bof ./ret2win/ret2win ./bypass_canary/bypass_canary ./rop_chain/rop_c
 
 .PHONY: clean
 clean:
-	rm -rf ./bof/bof ./ret2win/ret2win ./bypass_canary/bypass_canary ./rop_chain/rop_chain ./libc_leak/libc_leak
+	rm -rf ./shellcode/shellcode ./ret2win/ret2win ./bypass_canary/bypass_canary ./rop_chain/rop_chain ./libc_leak/libc_leak
