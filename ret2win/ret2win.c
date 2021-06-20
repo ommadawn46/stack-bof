@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <stdlib.h>
 
 void vuln()
 {
@@ -10,7 +9,7 @@ void vuln()
 void win()
 {
     puts("You Win!\n");
-    system("/bin/sh");
+    execve("/bin/sh", NULL, NULL);
 }
 
 int main(void)
