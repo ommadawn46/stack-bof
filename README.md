@@ -40,3 +40,10 @@ python3 exploit.py NOASLR
 ```
 python3 exploit.py NOASLR GDB
 ```
+
+
+## Run tests
+
+```
+python3 -m unittest discover .test/
+```
