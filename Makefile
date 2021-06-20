@@ -20,11 +20,11 @@ all: ./shellcode/shellcode ./ret2win/ret2win ./bypass_canary/bypass_canary ./rop
 
 ./rop_chain/rop_chain: ./rop_chain/rop_chain.c
 	gcc -no-pie -fstack-protector-all ./rop_chain/rop_chain.c -o ./rop_chain/rop_chain
-	patchelf --set-rpath ../lib/ --set-interpreter ../lib/ld-linux-x86-64.so.2 ./rop_chain/rop_chain
+	patchelf --set-rpath ../.lib/ --set-interpreter ../.lib/ld-linux-x86-64.so.2 ./rop_chain/rop_chain
 
 ./libc_leak/libc_leak: ./libc_leak/libc_leak.c
 	gcc -fstack-protector-all ./libc_leak/libc_leak.c -o ./libc_leak/libc_leak
-	patchelf --set-rpath ../lib/ --set-interpreter ../lib/ld-linux-x86-64.so.2 ./libc_leak/libc_leak
+	patchelf --set-rpath ../.lib/ --set-interpreter ../.lib/ld-linux-x86-64.so.2 ./libc_leak/libc_leak
 
 .PHONY: clean
 clean:
