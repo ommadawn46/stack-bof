@@ -1,5 +1,6 @@
 from unittest import TestCase
 import pwn
+import time
 
 
 class TestExploits(TestCase):
@@ -9,7 +10,9 @@ class TestExploits(TestCase):
         io = pwn.process(exploit.elf.path, cwd=exploit.script_dir)
 
         exploit.exploit(io)
-        io.sendline("echo pwned")
+        time.sleep(0.2)
+
+        io.sendlines(["echo 'p'w'n'e'd'", "exit"])
         self.assertTrue(b"pwned" in io.recvuntil("pwned", timeout=1))
 
     def test_shellcode(self):
@@ -18,7 +21,9 @@ class TestExploits(TestCase):
         io = pwn.process(exploit.elf.path, cwd=exploit.script_dir)
 
         exploit.exploit(io)
-        io.sendline("echo pwned")
+        time.sleep(0.2)
+
+        io.sendlines(["echo 'p'w'n'e'd'", "exit"])
         self.assertTrue(b"pwned" in io.recvuntil("pwned", timeout=1))
 
     def test_bypass_canary(self):
@@ -27,7 +32,9 @@ class TestExploits(TestCase):
         io = pwn.process(exploit.elf.path, cwd=exploit.script_dir)
 
         exploit.exploit(io)
-        io.sendline("echo pwned")
+        time.sleep(0.2)
+
+        io.sendlines(["echo 'p'w'n'e'd'", "exit"])
         self.assertTrue(b"pwned" in io.recvuntil("pwned", timeout=1))
 
     def test_rop_chain(self):
@@ -36,7 +43,9 @@ class TestExploits(TestCase):
         io = pwn.process(exploit.elf.path, cwd=exploit.script_dir)
 
         exploit.exploit(io)
-        io.sendline("echo pwned")
+        time.sleep(0.2)
+
+        io.sendlines(["echo 'p'w'n'e'd'", "exit"])
         self.assertTrue(b"pwned" in io.recvuntil("pwned", timeout=1))
 
     def test_libc_leak(self):
@@ -45,5 +54,7 @@ class TestExploits(TestCase):
         io = pwn.process(exploit.elf.path, cwd=exploit.script_dir)
 
         exploit.exploit(io)
-        io.sendline("echo pwned")
+        time.sleep(0.2)
+
+        io.sendlines(["echo 'p'w'n'e'd'", "exit"])
         self.assertTrue(b"pwned" in io.recvuntil("pwned", timeout=1))
