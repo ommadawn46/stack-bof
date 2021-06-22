@@ -45,5 +45,5 @@ python3 exploit.py NOASLR GDB
 ## Run tests
 
 ```
-python3 -m unittest discover .test/
+python3 -m unittest discover .test/ "*_test.py"
 ```

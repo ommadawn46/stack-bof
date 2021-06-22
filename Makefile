@@ -15,12 +15,16 @@
 	gcc -fstack-protector-all ./4_libc_leak/libc_leak.c -o ./4_libc_leak/libc_leak
 	patchelf --set-rpath ../.lib/ --set-interpreter ../.lib/ld-linux-x86-64.so.2 ./4_libc_leak/libc_leak
 
+./5_fsb_rop/fsb_rop: ./5_fsb_rop/fsb_rop.c
+	gcc -fstack-protector-all -Wl,-z,relro,-z,now ./5_fsb_rop/fsb_rop.c -o ./5_fsb_rop/fsb_rop
+	patchelf --set-rpath ../.lib/ --set-interpreter ../.lib/ld-linux-x86-64.so.2 ./5_fsb_rop/fsb_rop
+
 .PHONY: all
-all: ./0_ret2win/ret2win ./1_shellcode/shellcode ./2_bypass_canary/bypass_canary ./3_rop_chain/rop_chain ./4_libc_leak/libc_leak
+all: ./0_ret2win/ret2win ./1_shellcode/shellcode ./2_bypass_canary/bypass_canary ./3_rop_chain/rop_chain ./4_libc_leak/libc_leak ./5_fsb_rop/fsb_rop
 
 .PHONY: clean
 clean:
-	rm -rf ./0_ret2win/ret2win ./1_shellcode/shellcode ./2_bypass_canary/bypass_canary ./3_rop_chain/rop_chain ./4_libc_leak/libc_leak
+	rm -rf ./0_ret2win/ret2win ./1_shellcode/shellcode ./2_bypass_canary/bypass_canary ./3_rop_chain/rop_chain ./4_libc_leak/libc_leak ./5_fsb_rop/fsb_rop
 
 .PHONY: enable_aslr
 enable_aslr:
