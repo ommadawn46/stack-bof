@@ -1,11 +1,14 @@
 ./0_ret2win/ret2win: ./0_ret2win/ret2win.c
 	gcc -no-pie -fno-stack-protector -z execstack ./0_ret2win/ret2win.c -o ./0_ret2win/ret2win
+	patchelf --set-rpath ../.lib/ --set-interpreter ../.lib/ld-linux-x86-64.so.2 ./0_ret2win/ret2win
 
 ./1_shellcode/shellcode: ./1_shellcode/shellcode.c
 	gcc -no-pie -fno-stack-protector -z execstack ./1_shellcode/shellcode.c -o ./1_shellcode/shellcode
+	patchelf --set-rpath ../.lib/ --set-interpreter ../.lib/ld-linux-x86-64.so.2 ./1_shellcode/shellcode
 
 ./2_bypass_canary/bypass_canary: ./2_bypass_canary/bypass_canary.c
 	gcc -no-pie -fstack-protector-all -z execstack ./2_bypass_canary/bypass_canary.c -o ./2_bypass_canary/bypass_canary
+	patchelf --set-rpath ../.lib/ --set-interpreter ../.lib/ld-linux-x86-64.so.2 ./2_bypass_canary/bypass_canary
 
 ./3_rop_chain/rop_chain: ./3_rop_chain/rop_chain.c
 	gcc -no-pie -fstack-protector-all ./3_rop_chain/rop_chain.c -o ./3_rop_chain/rop_chain

@@ -1,12 +1,13 @@
-import pwn
 import os
-import pprint
+
+import pwn
 
 script_dir = os.path.dirname(os.path.realpath(__file__))
-elf = pwn.context.binary = pwn.ELF(os.path.join(script_dir, "./fsb_rop"))
+elf_path = os.path.join(script_dir, "./fsb_rop")
 
 
 def main():
+    elf = pwn.context.binary = pwn.ELF(elf_path)
     pwn.context.aslr = False
 
     stack = []
