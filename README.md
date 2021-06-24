@@ -21,17 +21,12 @@ cd /stack-bof
 ```
 
 
-## Run an exploit with ASLR enabled
+## Write an exploit code from the template
 
 ```
-python3 exploit.py
-```
-
-
-## Run an exploit with ASLR temporarily disabled
-
-```
-python3 exploit.py NOASLR
+cd ./0_ret2win
+cp ../.util/exploit_template.py ./my_exploit.py
+vim ./my_exploit.py
 ```
 
 

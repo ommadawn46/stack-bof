@@ -53,8 +53,19 @@ class TestExploitsAslr(TestCase):
         else:
             raise
 
+    def test_got_overwrite(self):
+        exploit = __import__("5_got_overwrite.exploit").exploit
+        for i in range(10):
+            try:
+                self.assertTrue(exploitable(exploit))
+                break
+            except Exception:
+                pass
+        else:
+            raise
+
     def test_fsb_rop(self):
-        exploit = __import__("5_fsb_rop.exploit").exploit
+        exploit = __import__("6_fsb_rop.exploit").exploit
         for i in range(10):
             try:
                 self.assertTrue(exploitable(exploit))

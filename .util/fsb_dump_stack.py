@@ -1,12 +1,14 @@
-import os
+import sys
 
 import pwn
 
-script_dir = os.path.dirname(os.path.realpath(__file__))
-elf_path = os.path.join(script_dir, "./fsb_rop")
-
 
 def main():
+    if len(sys.argv) != 2:
+        print(f"usage: {sys.argv[0]} elf_path")
+        sys.exit(1)
+    elf_path = sys.argv[1]
+
     elf = pwn.context.binary = pwn.ELF(elf_path)
     pwn.context.aslr = False
 

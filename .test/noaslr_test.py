@@ -41,6 +41,10 @@ class TestExploitsNoAslr(TestCase):
         exploit = __import__("4_libc_leak.exploit").exploit
         self.assertTrue(exploitable(exploit))
 
+    def test_got_overwrite(self):
+        exploit = __import__("5_got_overwrite.exploit").exploit
+        self.assertTrue(exploitable(exploit))
+
     def test_fsb_rop(self):
-        exploit = __import__("5_fsb_rop.exploit").exploit
+        exploit = __import__("6_fsb_rop.exploit").exploit
         self.assertTrue(exploitable(exploit))
